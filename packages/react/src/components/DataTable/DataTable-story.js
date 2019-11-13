@@ -222,4 +222,20 @@ storiesOf('DataTable', module)
     `,
       },
     }
+  )
+  .add(
+    'with horizontal scrolling',
+    withReadme(readme, () =>
+      require('./stories/with-horizontal-scrolling').default(props())
+    ),
+    {
+      info: {
+        text: `
+        DataTable with horizontal scrolling.
+
+        You can find more detailed information surrounding usage of this component
+        at the following url: ${readmeURL}
+      `,
+      },
+    }
   );

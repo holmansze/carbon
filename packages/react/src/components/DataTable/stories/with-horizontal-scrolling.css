@@ -1,0 +1,13 @@
+.bx--data-table-header {
+  position: sticky;
+  left: 0;
+}
+
+td {
+  white-space: nowrap;
+}
+
+.sticky {
+  position: sticky;
+  left: 0;
+}
