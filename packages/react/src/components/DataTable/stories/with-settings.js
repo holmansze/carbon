@@ -1,0 +1,96 @@
+/**
+ * Copyright IBM Corp. 2016, 2020
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import React from 'react';
+import { action } from '@storybook/addon-actions';
+import Button from '../../Button';
+import DataTable, {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableToolbar,
+  TableToolbarContent,
+  TableToolbarSearch,
+  TableToolbarMenu,
+} from '..';
+
+import withAddons from '../DataTableAddons';
+
+import { TableSettingsSize, TableSettingsColumns } from '../TableSettings';
+
+import { initialRows, headers } from './shared';
+
+import '../TableSettings/data-table-settings.css';
+
+const DataTableAddons = withAddons(DataTable);
+
+export default props => (
+  <DataTableAddons
+    rows={initialRows}
+    headers={headers}
+    {...props}
+    render={({
+      rows,
+      headers,
+      getHeaderProps,
+      getRowProps,
+      getTableProps,
+      onInputChange,
+      onSizeChange,
+      getTableContainerProps,
+    }) => (
+      <TableContainer
+        title="DataTable"
+        description="With toolbar"
+        {...getTableContainerProps()}>
+        <TableToolbar>
+          <TableToolbarContent>
+            <TableToolbarSearch onChange={onInputChange} />
+            <TableToolbarMenu>
+              <TableSettingsSize
+                size="normal"
+                sizeOptions={['short', 'normal', 'tall']}
+                onChange={onSizeChange}
+              />
+              <TableSettingsColumns
+                columns={headers}
+                selectedColumns={headers
+                  .map(header => header.key)
+                  .filter(item => item !== 'protocol')}
+              />
+            </TableToolbarMenu>
+            <Button onClick={action('ButtonCLick')}>Primary Button</Button>
+          </TableToolbarContent>
+        </TableToolbar>
+        <Table {...getTableProps()}>
+          <TableHead>
+            <TableRow>
+              {headers.map(header => (
+                <TableHeader {...getHeaderProps({ header })}>
+                  {header.header}
+                </TableHeader>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map(row => (
+              <TableRow {...getRowProps({ row })}>
+                {row.cells.map(cell => (
+                  <TableCell key={cell.id}>{cell.value}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    )}
+  />
+);

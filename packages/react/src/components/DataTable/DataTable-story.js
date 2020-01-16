@@ -59,6 +59,21 @@ storiesOf('DataTable', module)
     }
   )
   .add(
+    'with settings',
+    withReadme(readme, () =>
+      require('./stories/with-settings').default(props())
+    ),
+    {
+      info: {
+        text: `
+        DataTable with settings menu.
+        You can find more detailed information surrounding usage of this component
+        at the following url: ${readmeURL}
+      `,
+      },
+    }
+  )
+  .add(
     'with sorting',
     withReadme(readme, () =>
       require('./stories/with-sorting').default(props())
