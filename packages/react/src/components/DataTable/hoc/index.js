@@ -6,7 +6,9 @@
  */
 
 import withSettings from './withSettings';
+import withMenuFocus from './withMenuFocus';
 
 export {
   withSettings,
+  withMenuFocus,
 };

@@ -56,7 +56,7 @@ const TableSettingsColumns = React.forwardRef(
               defaultChecked={selected.includes(header.key)}
               onChange={onChange}
               onKeyDown={handleMenuItemFocus}
-              data-table-toolbar-focusable
+              data-table-settings-item-focusable
             />
           </TableSettingsOption>
         ))}

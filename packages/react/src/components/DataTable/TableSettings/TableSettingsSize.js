@@ -28,13 +28,14 @@ const TableSettingsSize = React.forwardRef(
     {
       size,
       sizeOptions,
-      onChange: onChangeProp,
       handleMenuItemFocus,
+      onChange: onChangeProp,
       translateWithId: t,
     },
     ref
   ) => {
     const [selected, setSelected] = useState(size);
+
     const onChange = id => {
       setSelected(id);
       onChangeProp(id);
@@ -61,7 +62,7 @@ const TableSettingsSize = React.forwardRef(
                 labelText={t(`carbon.table.toolbar.row.height.${option}`)}
                 value={option}
                 onKeyDown={handleMenuItemFocus}
-                data-table-toolbar-focusable
+                data-table-settings-item-focusable
               />
             ))}
           </RadioButtonGroup>
@@ -86,10 +87,6 @@ TableSettingsSize.propTypes = {
    * Provide an optional hook that is called each time the selection is updated
    */
   onChange: PropTypes.func,
-  /**
-   * Provide an optional hook that is called each time a key is pressed
-   */
-  handleMenuItemFocus: PropTypes.func,
   /**
    * Provide custom text for the component for each translation id
    */

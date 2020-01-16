@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+/*
+ * Higer Order Component that wraps DataTable,
+ * returning a new component with table settings support
+ */
 const withSettings = (WrappedDataTable) => {
   return ({ render, headers, initialSize, initialCols, ...passthroughProps }) => {
     const [selectedSize, setSelectedSize] = useState(initialSize);
@@ -14,6 +18,7 @@ const withSettings = (WrappedDataTable) => {
     };
 
     const selectedHeaders = headers.filter(h => selectedCols.includes(h.key));
+
     return (
       <WrappedDataTable
         {...passthroughProps}

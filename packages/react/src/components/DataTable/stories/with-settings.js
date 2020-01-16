@@ -22,7 +22,7 @@ import DataTable, {
   TableToolbarMenu,
 } from '..';
 
-import { withSettings } from '../hoc';
+import { withSettings, withMenuFocus } from '../hoc';
 
 import { TableSettingsSize, TableSettingsColumns } from '../TableSettings';
 
@@ -39,6 +39,7 @@ const initialCols = headerOptions
   .filter(item => item !== 'protocol');
 
 const DataTableWithEditColumns = withSettings(DataTable);
+const TableToolbarMenuWithMenuFocus = withMenuFocus(TableToolbarMenu);
 
 export default props => (
   <DataTableWithEditColumns
@@ -65,7 +66,7 @@ export default props => (
         <TableToolbar>
           <TableToolbarContent>
             <TableToolbarSearch onChange={onInputChange} />
-            <TableToolbarMenu>
+            <TableToolbarMenuWithMenuFocus>
               <TableSettingsSize
                 size={initialSize}
                 sizeOptions={sizeOptions}
@@ -76,7 +77,7 @@ export default props => (
                 headerOptions={headerOptions}
                 onChange={onColumnsChange}
               />
-            </TableToolbarMenu>
+            </TableToolbarMenuWithMenuFocus>
             <Button onClick={action('ButtonCLick')}>Primary Button</Button>
           </TableToolbarContent>
         </TableToolbar>
