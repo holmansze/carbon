@@ -30,12 +30,14 @@ import { initialRows, headers } from './shared';
 
 import '../TableSettings/data-table-settings.css';
 
+const initialSize = "short";
 const DataTableAddons = withAddons(DataTable);
 
 export default props => (
   <DataTableAddons
     rows={initialRows}
     headers={headers}
+    initialSize={initialSize}
     {...props}
     render={({
       rows,
@@ -56,7 +58,7 @@ export default props => (
             <TableToolbarSearch onChange={onInputChange} />
             <TableToolbarMenu>
               <TableSettingsSize
-                size="normal"
+                size={initialSize}
                 sizeOptions={['short', 'normal', 'tall']}
                 onChange={onSizeChange}
               />

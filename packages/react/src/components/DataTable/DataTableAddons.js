@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-const withAddons = WrappedDataTable => {
-  return ({ render, ...passthroughProps }) => {
-    const [size, setSize] = useState('normal');
-
+const withAddons = (WrappedDataTable) => {
+  return ({ render, initialSize, ...passthroughProps }) => {
+    const [selectedSize, setSelectedSize] = useState(initialSize);
     const augmentedRender = renderProps => {
       renderProps.onSizeChange = val => {
-        setSize(val);
+        setSelectedSize(val);
       };
       return render(renderProps);
     };
@@ -15,7 +14,7 @@ const withAddons = WrappedDataTable => {
       <WrappedDataTable
         {...passthroughProps}
         render={augmentedRender}
-        size={size}
+        size={selectedSize}
       />
     );
   };

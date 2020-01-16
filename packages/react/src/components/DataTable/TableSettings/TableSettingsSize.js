@@ -48,7 +48,6 @@ const TableSettingsSize = React.forwardRef(
         />
         <TableSettingsOption>
           <RadioButtonGroup
-            defaultSelected="normal"
             labelPosition="right"
             legend="Row Height"
             name="row-height-radio-button-group"
