@@ -22,7 +22,7 @@ import DataTable, {
   TableToolbarMenu,
 } from '..';
 
-import withAddons from '../DataTableAddons';
+import withEditColumns from '../withEditColumns';
 
 import { TableSettingsSize, TableSettingsColumns } from '../TableSettings';
 
@@ -30,14 +30,22 @@ import { initialRows, headers } from './shared';
 
 import '../TableSettings/data-table-settings.css';
 
+const sizeOptions = ['short', 'normal', 'tall'];
 const initialSize = "normal";
-const DataTableAddons = withAddons(DataTable);
+
+const headerOptions = [...headers];
+const initialCols = headerOptions
+  .map(header => header.key)
+  .filter(item => item !== 'protocol');
+
+const DataTableWithEditColumns = withEditColumns(DataTable);
 
 export default props => (
-  <DataTableAddons
+  <DataTableWithEditColumns
     rows={initialRows}
     headers={headers}
     initialSize={initialSize}
+    initialCols={initialCols}
     {...props}
     render={({
       rows,
@@ -47,6 +55,7 @@ export default props => (
       getTableProps,
       onInputChange,
       onSizeChange,
+      onColumnsChange,
       getTableContainerProps,
     }) => (
       <TableContainer
@@ -59,14 +68,13 @@ export default props => (
             <TableToolbarMenu>
               <TableSettingsSize
                 size={initialSize}
-                sizeOptions={['short', 'normal', 'tall']}
+                sizeOptions={sizeOptions}
                 onChange={onSizeChange}
               />
               <TableSettingsColumns
-                columns={headers}
-                selectedColumns={headers
-                  .map(header => header.key)
-                  .filter(item => item !== 'protocol')}
+                initialCols={initialCols}
+                headerOptions={headerOptions}
+                onChange={onColumnsChange}
               />
             </TableToolbarMenu>
             <Button onClick={action('ButtonCLick')}>Primary Button</Button>

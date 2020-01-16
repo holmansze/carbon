@@ -21,15 +21,15 @@ const translateWithId = id => {
 const TableSettingsColumns = React.forwardRef(
   (
     {
-      columns,
-      selectedColumns,
+      headerOptions,
+      initialCols,
       onChange: onChangeProp,
       handleMenuItemFocus,
       translateWithId: t,
     },
     ref
   ) => {
-    const [selected, setSelected] = useState(selectedColumns);
+    const [selected, setSelected] = useState(initialCols);
 
     const onChange = (checked, id) => {
       const selectedSet = new Set(selected);
@@ -48,12 +48,12 @@ const TableSettingsColumns = React.forwardRef(
           ref={ref}
           title={t('carbon.table.toolbar.columns.label')}
         />
-        {columns.map(column => (
-          <TableSettingsOption key={column.key}>
+        {headerOptions.map(header => (
+          <TableSettingsOption key={header.key}>
             <Checkbox
-              id={column.key}
-              labelText={column.header}
-              defaultChecked={selected.includes(column.key)}
+              id={header.key}
+              labelText={header.header}
+              defaultChecked={selected.includes(header.key)}
               onChange={onChange}
               onKeyDown={handleMenuItemFocus}
               data-table-toolbar-focusable
@@ -69,11 +69,11 @@ TableSettingsColumns.propTypes = {
   /**
    * Provide an array of columns
    */
-  columns: PropTypes.array.isRequired,
+  headerOptions: PropTypes.array.isRequired,
   /**
    * Provide an optional array of initially selected columns
    */
-  selectedColumns: PropTypes.array,
+  initialCols: PropTypes.array,
   /**
    * Provide an optional hook that is called each time the selection is updated
    */
@@ -89,8 +89,8 @@ TableSettingsColumns.propTypes = {
 };
 
 TableSettingsColumns.defaultProps = {
-  columns: [],
-  selectedColumns: [],
+  headerOptions: [],
+  initialCols: [],
   translateWithId,
 };
 
