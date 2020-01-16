@@ -22,7 +22,7 @@ import DataTable, {
   TableToolbarMenu,
 } from '..';
 
-import withEditColumns from '../withEditColumns';
+import { withSettings } from '../hoc';
 
 import { TableSettingsSize, TableSettingsColumns } from '../TableSettings';
 
@@ -38,7 +38,7 @@ const initialCols = headerOptions
   .map(header => header.key)
   .filter(item => item !== 'protocol');
 
-const DataTableWithEditColumns = withEditColumns(DataTable);
+const DataTableWithEditColumns = withSettings(DataTable);
 
 export default props => (
   <DataTableWithEditColumns

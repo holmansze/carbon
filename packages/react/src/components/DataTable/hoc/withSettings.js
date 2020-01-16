@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const withEditColumns = (WrappedDataTable) => {
+const withSettings = (WrappedDataTable) => {
   return ({ render, headers, initialSize, initialCols, ...passthroughProps }) => {
     const [selectedSize, setSelectedSize] = useState(initialSize);
     const [selectedCols, setSelectedCols] = useState(initialCols);
@@ -25,4 +25,4 @@ const withEditColumns = (WrappedDataTable) => {
   };
 };
 
-export default withEditColumns;
+export default withSettings;
