@@ -4,10 +4,11 @@ const withAddons = (WrappedDataTable) => {
   return ({ render, initialSize, ...passthroughProps }) => {
     const [selectedSize, setSelectedSize] = useState(initialSize);
     const augmentedRender = renderProps => {
-      renderProps.onSizeChange = val => {
-        setSelectedSize(val);
+      const augmentedRenderProps = {
+        ...renderProps,
+        onSizeChange: value => setSelectedSize(value),
       };
-      return render(renderProps);
+      return render(augmentedRenderProps);
     };
 
     return (

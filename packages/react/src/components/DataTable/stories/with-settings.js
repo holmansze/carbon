@@ -30,7 +30,7 @@ import { initialRows, headers } from './shared';
 
 import '../TableSettings/data-table-settings.css';
 
-const initialSize = "short";
+const initialSize = "normal";
 const DataTableAddons = withAddons(DataTable);
 
 export default props => (
