@@ -9,10 +9,12 @@ import TableSettingsTitle from './TableSettingsTitle';
 import TableSettingsOption from './TableSettingsOption';
 import TableSettingsColumns from './TableSettingsColumns';
 import TableSettingsSize from './TableSettingsSize';
+import TableSettingsReset from './TableSettingsReset';
 
 export {
   TableSettingsTitle,
   TableSettingsOption,
   TableSettingsColumns,
   TableSettingsSize,
+  TableSettingsReset,
 };

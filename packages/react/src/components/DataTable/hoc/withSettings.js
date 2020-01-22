@@ -11,8 +11,18 @@ const withSettings = (WrappedDataTable) => {
     const augmentedRender = renderProps => {
       const augmentedRenderProps = {
         ...renderProps,
+        size: selectedSize,
         onSizeChange: value => setSelectedSize(value),
+        cols: selectedCols,
         onColumnsChange: value => setSelectedCols([...value]),
+        onReset: (value) => {
+          if (value.defaultSize) {
+            setSelectedSize(value.defaultSize);
+          }
+          if (value.defaultCols) {
+            setSelectedCols([...value.defaultCols]);
+          }
+        },
       };
       return render(augmentedRenderProps);
     };

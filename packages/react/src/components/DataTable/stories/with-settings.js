@@ -24,7 +24,7 @@ import DataTable, {
 
 import { withSettings, withMenuFocus } from '../hoc';
 
-import { TableSettingsSize, TableSettingsColumns } from '../TableSettings';
+import { TableSettingsSize, TableSettingsColumns, TableSettingsReset } from '../TableSettings';
 
 import { initialRows, headers } from './shared';
 
@@ -37,12 +37,16 @@ const headerOptions = [...headers];
 const initialCols = headerOptions
   .map(header => header.key)
   .filter(item => item !== 'protocol');
+const defaultSettings = {
+  defaultSize: initialSize,
+  defaultCols: [...initialCols],
+};
 
-const DataTableWithEditColumns = withSettings(DataTable);
+const DataTableWithSettings = withSettings(DataTable);
 const TableToolbarMenuWithMenuFocus = withMenuFocus(TableToolbarMenu);
 
 export default props => (
-  <DataTableWithEditColumns
+  <DataTableWithSettings
     rows={initialRows}
     headers={headers}
     initialSize={initialSize}
@@ -55,8 +59,11 @@ export default props => (
       getRowProps,
       getTableProps,
       onInputChange,
+      size,
       onSizeChange,
+      cols,
       onColumnsChange,
+      onReset,
       getTableContainerProps,
     }) => (
       <TableContainer
@@ -68,14 +75,18 @@ export default props => (
             <TableToolbarSearch onChange={onInputChange} />
             <TableToolbarMenuWithMenuFocus>
               <TableSettingsSize
-                size={initialSize}
+                size={size}
                 sizeOptions={sizeOptions}
                 onChange={onSizeChange}
               />
               <TableSettingsColumns
-                initialCols={initialCols}
+                initialCols={cols}
                 headerOptions={headerOptions}
                 onChange={onColumnsChange}
+              />
+              <TableSettingsReset
+                defaultSettings={defaultSettings}
+                onClick={onReset}
               />
             </TableToolbarMenuWithMenuFocus>
             <Button onClick={action('ButtonCLick')}>Primary Button</Button>
