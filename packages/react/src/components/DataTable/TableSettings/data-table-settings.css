@@ -1,5 +1,6 @@
 .bx--overflow-menu-options--open {
   max-height: 31rem;
+  width: 12.625rem;
   overflow-y: scroll;
 }
 
@@ -21,4 +22,5 @@
   width: 100%;
   position: sticky;
   bottom: 0;
+  background-color: #323232;
 }
